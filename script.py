@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.model_selection import train_test_split
 #Read train and test csv into dataframe
 train_df = pd.read_csv("data/train.csv")
 test_df = pd.read_csv("data/test.csv")
@@ -26,5 +27,7 @@ train_X = train_df.drop("Survived", axis =1)
 #Converting categorical value in 'Embarked' column into a new column
 train_X_onehot = pd.get_dummies(train_X, columns = ["Embarked"])
 test_onehot = pd.get_dummies(test_df, columns = ["Embarked"])
+#Split the train and test data
+train_X_train, train_X_test, train_Y_train, train_Y_test = train_test_split(train_X_onehot, train_Y, test_sie = 0.2)
 
 
